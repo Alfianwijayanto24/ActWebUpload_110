@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Upload</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            background:#f4f7fb;
+            padding:40px;
+        }
+
+        .container{
+            width:90%;
+            max-width:1200px;
+            margin:auto;
+        }
+
+        .title{
+            text-align:center;
+            margin-bottom:30px;
+        }
+
+        .title h1{
+            font-size:40px;
+            color:#333;
+        }
+
+        .title p{
+            color:#777;
+            margin-top:10px;
+        }
+
+        /* CARD */
+
+        .upload-card{
+            background:white;
+            padding:30px;
+            border-radius:20px;
+            box-shadow:0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom:30px;
+        }
+
+        .upload-box{
+            border:3px dashed #4a90e2;
+            padding:40px;
+            border-radius:20px;
+            text-align:center;
+            transition:0.3s;
+        }
+
+        .upload-box:hover{
+            background:#f0f7ff;
+        }
+
+        input[type=file]{
+            margin:20px 0;
+            font-size:16px;
+        }
+
+        /* PREVIEW IMAGE */
+
+        #preview{
+            width:220px;
+            height:220px;
+            object-fit:cover;
+            border-radius:15px;
+            margin-top:20px;
+            margin-bottom:20px;
+            display:none;
+            box-shadow:0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* BUTTON */
+
+        .btn-upload{
+            background:#4a90e2;
+            color:white;
+            border:none;
+            padding:14px 35px;
+            border-radius:12px;
+            cursor:pointer;
+            font-size:18px;
+            transition:0.3s;
+        }
+
+        .btn-upload:hover{
+            background:#357bd8;
+            transform:scale(1.05);
+        }
+
+        /* IFRAME */
+
+        iframe{
+            width:100%;
+            height:650px;
+            border:none;
+            border-radius:20px;
+            background:white;
+            box-shadow:0 5px 20px rgba(0,0,0,0.1);
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <div class="title">
+        <h1>Web Upload</h1>
+        <p>Sistem Upload File HTML & PHP</p>
+    </div>
+
+    <!-- Upload -->
+
+    <div class="upload-card">
+
+        <form action="upload.php"
+              method="post"
+              enctype="multipart/form-data">
+
+            <div class="upload-box">
+
+                <h2>Pilih File</h2>
+
+                <p>Upload gambar, pdf, atau dokumen</p>
+
+                <!-- INPUT FILE -->
+
+                <input type="file"
+                       name="fileToUpload"
+                       id="fileInput"
+                       accept="image/*"
+                       onchange="previewImage(event)"
+                       required>
+
+                <br>
+
+                <!-- PREVIEW -->
+
+                <img id="preview">
+
+                <br>
+
+                <!-- BUTTON -->
+
+                <button type="submit" class="btn-upload">
+                    Upload File
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+    <!-- TABEL FILE -->
+
+    <iframe src="lihat.php"></iframe>
+
+</div>
+
+<script>
+
+function previewImage(event){
+
+    const input = event.target;
+
+    const preview = document.getElementById("preview");
+
+    const file = input.files[0];
+
+    if(file){
+
+        preview.src = URL.createObjectURL(file);
+
+        preview.style.display = "block";
+    }
+}
+
+</script>
+
+</body>
+</html>
